@@ -93,7 +93,15 @@ int main2(int argc, char* argv[]) {
                     i += 1;
                     parseArgs(argv[i], opt_arg1, opt_arg2); // 引数をparse
                     substString(rootNode, opt_arg1, opt_arg2);
-                    sortBinSTree(rootNode);
+                    removeNode(rootNode, "", 0);
+                    if(rootNode->word == NULL) {
+                        printf("There is no node\n");
+                        clearBinSTree(rootNode);
+                        free(opt_arg1);
+                        free(opt_arg2);
+                        return 0;
+                    }
+                    rootNode = sortBinSTree(rootNode);
                     break;
                 case 'r':
                     i += 1;
@@ -103,17 +111,31 @@ int main2(int argc, char* argv[]) {
                     } else {
                         removeNode(rootNode, opt_arg1, 1);
                     }
-                    sortBinSTree(rootNode);
+                    if(rootNode->word == NULL) {
+                        printf("There is no node\n");
+                        clearBinSTree(rootNode);
+                        free(opt_arg1);
+                        free(opt_arg2);
+                        return 0;
+                    }
+                    rootNode = sortBinSTree(rootNode);
                     break;
             }
         } else {
             break; // ファイル引数に達したらオプション走査終了
         }
     }
-    if(u_flag) {}
-    removeNode(rootNode, "", 0);
+    if(u_flag) {
+        uniqueNode(rootNode);
+    }
+    printf("ここまで来たぞ\n");
+    rootNode = sortBinSTree(rootNode);
     if(rootNode->word == NULL) {
         printf("There is no node\n");
+        clearBinSTree(rootNode);
+        free(opt_arg1);
+        free(opt_arg2);
+        return 0;
     }
     printTree(rootNode, p_flag);
     clearBinSTree(rootNode);
