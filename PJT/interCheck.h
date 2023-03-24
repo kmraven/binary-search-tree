@@ -10,14 +10,14 @@ typedef struct _BinSTreeNode{
   struct _BinSTreeNode *left;
   struct _BinSTreeNode *right;
   struct _BinSTreeNode *pare;
-}BinSTreeNode;
+} BinSTreeNode;
 
 //required functions
 BinSTreeNode* createNode(const char *word);
 void addNode(BinSTreeNode* rootNode, BinSTreeNode* node);
 void printTree(BinSTreeNode *rootNode, int order);
 int substString(BinSTreeNode* rootNode, const char *sstr, const char *rstr);
-void sortBinSTree(BinSTreeNode* rootNode);
+BinSTreeNode* sortBinSTree(BinSTreeNode* rootNode);
 void clearBinSTree(BinSTreeNode* rootNode);
 void removeNode(BinSTreeNode* rootNode, const char *word, int delall);
 
@@ -37,4 +37,5 @@ int substTree(BinSTreeNode* rootNode, const char *sstr, const char *rstr, int re
 BinSTreeNode* setupTree(BinSTreeNode* rootNode, FILE* fp);
 int validateArgs(char* argv);
 void parseArgs(char* argv, char* opt_arg1, char* opt_arg2);
-void freeBelowNode(BinSTreeNode* rootNode);
+void uniqueNode(BinSTreeNode* rootNode);
+BinSTreeNode* recreateNode(BinSTreeNode* rootNode, BinSTreeNode* new_rootNode);

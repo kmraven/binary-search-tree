@@ -20,9 +20,19 @@ void removeNode(BinSTreeNode* rootNode, const char *word, int delall){
                 tmp = getMin(rootNode->right);
                 mystrcpy(rootNode->word, tmp->word);
                 removeNode(tmp, tmp->word, 1);
+            } else if(rootNode->pare == NULL) {
+                // 全体のrootの場合はwordをNULLにする
+                free(rootNode->word);
+                rootNode->word = NULL;
+                return;
             } else {
-                // 子がなければそのまま削除
-                freeBelowNode(rootNode);
+                // 子供なしかつ全体のrootでなければそのまま削除
+                if(rootNode->pare->left == rootNode) {
+                    rootNode->pare->left = NULL;
+                } else if(rootNode->pare->right == rootNode) {
+                    rootNode->pare->right = NULL;
+                }
+                clearBinSTree(rootNode);
                 return;
             }
             if(delall == 0) {

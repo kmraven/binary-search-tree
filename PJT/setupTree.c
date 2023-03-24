@@ -56,5 +56,6 @@ BinSTreeNode* setupTree(BinSTreeNode* rootNode, FILE* fp) {
     }
     free(str);
     free(str_buff);
+    printf("%s\n", rootNode->word);
     return rootNode;
 }
