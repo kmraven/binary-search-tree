@@ -22,7 +22,6 @@ void clearBinSTree(BinSTreeNode* rootNode);
 void removeNode(BinSTreeNode* rootNode, const char *word, int delall);
 
 //your additional functions
-char* chomp(char* str);
 int mystrcmp(const char* s1, const char* s2);
 char* mystrcpy(char* s1, const char* s2);
 int mystrlen(const char* str);
