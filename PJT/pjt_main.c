@@ -126,7 +126,7 @@ int main(int argc, char* argv[]) {
                     free(opt_arg2);
                     return 0;
                 }
-                rootNode = sortBinSTree(rootNode);
+                sortBinSTree(&rootNode);
             } else if(mystrcmp(argv[i], "-r") == 0) {
                 i += 1;
                 parseArgs(argv[i], opt_arg1, opt_arg2); // 引数をparse
@@ -142,7 +142,7 @@ int main(int argc, char* argv[]) {
                     free(opt_arg2);
                     return 0;
                 }
-                rootNode = sortBinSTree(rootNode);
+                sortBinSTree(&rootNode);
             }
         } else {
             break; // ファイル引数に達したらオプション走査終了
@@ -150,16 +150,13 @@ int main(int argc, char* argv[]) {
     }
     if(u_arg) {
         uniqueNode(rootNode);
+        sortBinSTree(&rootNode);
     }
-    rootNode = sortBinSTree(rootNode);
     if(rootNode->word == NULL) {
         printf("There is no node\n");
-        clearBinSTree(rootNode);
-        free(opt_arg1);
-        free(opt_arg2);
-        return 0;
+    } else {
+        printTree(rootNode, p_arg);
     }
-    printTree(rootNode, p_arg);
     clearBinSTree(rootNode);
     free(opt_arg1);
     free(opt_arg2);

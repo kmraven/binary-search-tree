@@ -17,7 +17,7 @@ BinSTreeNode* createNode(const char *word);
 void addNode(BinSTreeNode* rootNode, BinSTreeNode* node);
 void printTree(BinSTreeNode *rootNode, int order);
 int substString(BinSTreeNode* rootNode, const char *sstr, const char *rstr);
-BinSTreeNode* sortBinSTree(BinSTreeNode* rootNode);
+void sortBinSTree(BinSTreeNode** rootNode);
 void clearBinSTree(BinSTreeNode* rootNode);
 void removeNode(BinSTreeNode* rootNode, const char *word, int delall);
 
@@ -38,4 +38,4 @@ void setupTree(BinSTreeNode** rootNode, FILE* fp);
 int validateArgs(char* argv);
 void parseArgs(char* argv, char* opt_arg1, char* opt_arg2);
 void uniqueNode(BinSTreeNode* rootNode);
-BinSTreeNode* recreateNode(BinSTreeNode* rootNode, BinSTreeNode* new_rootNode);
+void recreateNode(BinSTreeNode* rootNode, BinSTreeNode** new_rootNode);

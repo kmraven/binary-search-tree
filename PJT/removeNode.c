@@ -42,9 +42,8 @@ void removeNode(BinSTreeNode* rootNode, const char *word, int delall){
                 // 近いもの1つ見つけたら終了
                 return;
             }
-        } else if(cmp == 1) {
+        } else {
             removeNode(rootNode->left, word, delall);
-        } else if(cmp == -1) {
             removeNode(rootNode->right, word, delall);
         }
     }
