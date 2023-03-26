@@ -13,12 +13,18 @@ void removeNode(BinSTreeNode* rootNode, const char *word, int delall){
             if(rootNode->left != NULL) {
                 // 左に子があればそれより下の最大値を持ってくる
                 tmp = getMax(rootNode->left);
-                mystrcpy(rootNode->word, tmp->word);
+                char* str_buff = (char*)malloc(sizeof(char) * (mystrlen(tmp->word) + 1));
+                mystrcpy(str_buff, tmp->word);
+                free(rootNode->word);
+                rootNode->word = str_buff;
                 removeNode(tmp, tmp->word, 1);
             } else if(rootNode->right != NULL) {
                 // 右に子があればそれより下の最小値を持ってくる
                 tmp = getMin(rootNode->right);
-                mystrcpy(rootNode->word, tmp->word);
+                char* str_buff = (char*)malloc(sizeof(char) * (mystrlen(tmp->word) + 1));
+                mystrcpy(str_buff, tmp->word);
+                free(rootNode->word);
+                rootNode->word = str_buff;
                 removeNode(tmp, tmp->word, 1);
             } else if(rootNode->pare == NULL) {
                 // 全体のrootの場合はwordをNULLにする
