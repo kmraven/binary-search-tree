@@ -34,7 +34,7 @@ int mystrstr(const char* s1, const char* s2);
 BinSTreeNode* getMax(BinSTreeNode* rootNode);
 BinSTreeNode* getMin(BinSTreeNode* rootNode);
 int substTree(BinSTreeNode* rootNode, const char *sstr, const char *rstr, int replaced);
-BinSTreeNode* setupTree(BinSTreeNode* rootNode, FILE* fp);
+void setupTree(BinSTreeNode** rootNode, FILE* fp);
 int validateArgs(char* argv);
 void parseArgs(char* argv, char* opt_arg1, char* opt_arg2);
 void uniqueNode(BinSTreeNode* rootNode);

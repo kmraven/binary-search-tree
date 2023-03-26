@@ -3,7 +3,7 @@
 int mystrncmp(const char* s1, const char* s2, const int n){
     int i = 0;
     if(n == 0){
-        return 999; // 対象が0文字だったら無条件にダメ
+        return 0; // 対象が0文字だったら無条件にダメ
     }
     while(i < n){
         if(s1[i] > s2[i] || (s1[i] == '\0' && s2[i] != '\0')){

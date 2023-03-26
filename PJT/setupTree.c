@@ -1,6 +1,6 @@
 #include "interCheck.h"
 
-BinSTreeNode* setupTree(BinSTreeNode* rootNode, FILE* fp) {
+void setupTree(BinSTreeNode** rootNode, FILE* fp) {
     /*
     入力データをTreeに格納する関数
     fp = NULLならstdinから取得する
@@ -18,10 +18,11 @@ BinSTreeNode* setupTree(BinSTreeNode* rootNode, FILE* fp) {
                         if(str[j] == ' ' || str[j] == '\n' || str[j] == '\0'){
                             // また空白か\nが来るまで回す -> 空白か\nがきたらiから(j-i)文字をcopy
                             mystrncpy(str_buff, &str[i], j - i);
-                            if(rootNode == NULL) {
-                                rootNode = createNode(str_buff);
+                            if(*rootNode == NULL) {
+                                *rootNode = createNode(str_buff);
                             } else {
-                                addNode(rootNode, createNode(str_buff));
+                                // ここまではある
+                                addNode(*rootNode, createNode(str_buff));
                             }
                             break;
                         }
@@ -41,10 +42,10 @@ BinSTreeNode* setupTree(BinSTreeNode* rootNode, FILE* fp) {
                         if(str[j] == ' ' || str[j] == '\n' || str[j] == '\0'){
                             // また空白か\nが来るまで回す -> 空白か\nがきたらiから(j-i)文字をcopy
                             mystrncpy(str_buff, &str[i], j - i);
-                            if(rootNode == NULL) {
-                                rootNode = createNode(str_buff);
+                            if(*rootNode == NULL) {
+                                *rootNode = createNode(str_buff);
                             } else {
-                                addNode(rootNode, createNode(str_buff));
+                                addNode(*rootNode, createNode(str_buff));
                             }
                             break;
                         }
@@ -56,6 +57,5 @@ BinSTreeNode* setupTree(BinSTreeNode* rootNode, FILE* fp) {
     }
     free(str);
     free(str_buff);
-    printf("%s\n", rootNode->word);
-    return rootNode;
+    return;
 }

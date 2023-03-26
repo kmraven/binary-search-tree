@@ -96,13 +96,13 @@ int main(int argc, char* argv[]) {
                 clearBinSTree(rootNode);
                 return 1;
             }
-            rootNode = setupTree(rootNode, fp);
+            setupTree(&rootNode, fp);
             fclose(fp);
         }
     }
     if(stdin_flag) {
         // ファイル引数が存在しないならNULLを渡してstdinから読み込む
-        rootNode = setupTree(rootNode, fp);
+        setupTree(&rootNode, fp);
     }
 
     char* opt_arg1 = (char*)malloc(sizeof(char) * N);
@@ -112,8 +112,8 @@ int main(int argc, char* argv[]) {
     // -s,-u,-rの処理を実行、バリデーション通過済みなので最低限の処理のみでOK
     for(i = 1; i < argc; i++) {
         if(*argv[i] == '-') {
-            if(mystrcmp(argv[i], "-p") == 0) {
-                
+            if(mystrcmp(argv[i], "-p") == 0 && p_flag == 2) {
+                i += 1;
             } else if(mystrcmp(argv[i], "-s") == 0) {
                 i += 1;
                 parseArgs(argv[i], opt_arg1, opt_arg2); // 引数をparse
