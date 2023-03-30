@@ -7,19 +7,11 @@ int validateArgs(char *argv) {
     最初と最後が'/'かつ'/'が3つであればOK
     */
     int i = 0, slash_cnt = 0;
-    if(argv[i] != '/') {
-        return 1; // 最初の文字が'/'ではない
-    }
+    if(argv[i] != '/') {return 1;} // 最初の文字が'/'ではない
     for(i = 0; i < mystrlen(argv); i++) {
-        if(argv[i] == '/') {
-            slash_cnt += 1;
-        }
+        if(argv[i] == '/') {slash_cnt += 1;}
     }
-    if(slash_cnt != 3) {
-        return 1; // '/'の数が3つではない
-    }
-    if(argv[i - 1] != '/') {
-        return 1; // 最後の文字が'/'ではない
-    }
+    if(slash_cnt != 3) {return 1;} // '/'の数が3つではない
+    if(argv[i - 1] != '/') {return 1;} // 最後の文字が'/'ではない
     return 0;
 }

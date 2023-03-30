@@ -2,9 +2,7 @@
 
 void addNode(BinSTreeNode* rootNode, BinSTreeNode* node){
     /* 2分探索木に対してノードを新たに追加する。*/
-    int cmp;
-    cmp = mystrcmp(rootNode->word, node->word);
-    if(cmp == 1){
+    if(mystrcmp(rootNode->word, node->word) == 1){
         if(rootNode->left != NULL) {
             addNode(rootNode->left, node);
         } else {

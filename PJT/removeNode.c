@@ -42,11 +42,9 @@ void removeNode(BinSTreeNode* rootNode, const char *word, int delall){
                 return;
             }
             if(delall == 0) {
-                // 全て削除なので再発火(削除対象をrootに代入しているかもしれない)
-                removeNode(rootNode, word, delall);
+                removeNode(rootNode, word, delall); // 全て削除なので再発火(削除対象をrootに代入しているかもしれない)
             } else {
-                // 近いもの1つ見つけたら終了
-                return;
+                return; // 近いもの1つ見つけたら終了
             }
         } else {
             removeNode(rootNode->left, word, delall);

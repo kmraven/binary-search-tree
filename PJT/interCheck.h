@@ -16,7 +16,7 @@ typedef struct _BinSTreeNode{
 BinSTreeNode* createNode(const char *word);
 void addNode(BinSTreeNode* rootNode, BinSTreeNode* node);
 void printTree(BinSTreeNode *rootNode, int order);
-int substString(BinSTreeNode* rootNode, const char *sstr, const char *rstr);
+int substString(BinSTreeNode* rootNode, const char *sstr, const char *rstr, int replaced);
 void sortBinSTree(BinSTreeNode** rootNode);
 void clearBinSTree(BinSTreeNode* rootNode);
 void removeNode(BinSTreeNode* rootNode, const char *word, int delall);

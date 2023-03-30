@@ -5,7 +5,7 @@ int main(int argc, char* argv[]) {
     FILE* fp = NULL;
     BinSTreeNode* rootNode = NULL;
 
-    // コマンドの引数をチェック
+    /* --- コマンドをバリデーション & Tree作成 --- */
     for(i = 1; i < argc; i++) {
         if(*argv[i] == '-') {
             if(opt_read) {
@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
                     return 1;
                 } else {
                     p_flag = 1;
-                    if(i + 1 < argc) {
+                    if(i + 1 < argc) { // 次の引数があるなら
                         if(mystrcmp(argv[i + 1], "0") == 0 || mystrcmp(argv[i + 1], "1") == 0 || mystrcmp(argv[i + 1], "2") == 0) {
                             fp = fopen(argv[i + 1], "r");
                             if(fp != NULL) {
@@ -100,15 +100,12 @@ int main(int argc, char* argv[]) {
             fclose(fp);
         }
     }
-    if(stdin_flag) {
-        // ファイル引数が存在しないならNULLを渡してstdinから読み込む
-        setupTree(&rootNode, fp);
-    }
+    if(stdin_flag) {setupTree(&rootNode, stdin);} // ファイル引数が存在しないならNULLを渡してstdinから読み込む
 
+    /* --- オプションに応じた処理 --- */
     char* opt_arg1 = (char*)malloc(sizeof(char) * N);
     char* opt_arg2 = (char*)malloc(sizeof(char) * N);
     printf("---BinSTree---\n");
-    // オプションに応じた処理
     // -s,-u,-rの処理を実行、バリデーション通過済みなので最低限の処理のみでOK
     for(i = 1; i < argc; i++) {
         if(*argv[i] == '-') {
@@ -117,16 +114,9 @@ int main(int argc, char* argv[]) {
             } else if(mystrcmp(argv[i], "-s") == 0) {
                 i += 1;
                 parseArgs(argv[i], opt_arg1, opt_arg2); // 引数をparse
-                substString(rootNode, opt_arg1, opt_arg2);
+                substString(rootNode, opt_arg1, opt_arg2, 0);
                 sortBinSTree(&rootNode);
                 removeNode(rootNode, "", 0);
-                if(rootNode->word == NULL) {
-                    printf("There is no node\n");
-                    clearBinSTree(rootNode);
-                    free(opt_arg1);
-                    free(opt_arg2);
-                    return 0;
-                }
             } else if(mystrcmp(argv[i], "-r") == 0) {
                 i += 1;
                 parseArgs(argv[i], opt_arg1, opt_arg2); // 引数をparse
@@ -135,13 +125,13 @@ int main(int argc, char* argv[]) {
                 } else {
                     removeNode(rootNode, opt_arg1, 1);
                 }
-                if(rootNode->word == NULL) {
-                    printf("There is no node\n");
-                    clearBinSTree(rootNode);
-                    free(opt_arg1);
-                    free(opt_arg2);
-                    return 0;
-                }
+            }
+            if(rootNode->word == NULL) { // removeNodeで木が消滅した場合はrootNode->wordをNULLにするようにしている
+                printf("There is no node\n");
+                clearBinSTree(rootNode);
+                free(opt_arg1);
+                free(opt_arg2);
+                return 0;
             }
         } else {
             break; // ファイル引数に達したらオプション走査終了

@@ -19,7 +19,7 @@ char* mystrsubst(const char* s1, const char* s2, const char* s3){
         }
     }
     char* return_str = (char*)malloc(sizeof(char) * (mystrlen(new_str) + 1));
-    mystrcpy(return_str, new_str);
+    mystrcpy(return_str, new_str);  // mallocサイズを整えておく
     free(new_str);
     return return_str;
 }
