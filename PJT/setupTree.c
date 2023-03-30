@@ -3,7 +3,6 @@
 void setupTree(BinSTreeNode** rootNode, FILE* fp) {
     /*
     入力データをTreeに格納する関数
-    fp = NULLならstdinから取得する
     */
     int i, j;
     char* str = (char*)malloc(sizeof(char) * N);
