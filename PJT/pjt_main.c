@@ -134,13 +134,13 @@ int main(int argc, char* argv[]) {
             break; // ファイル引数に達したらオプション走査終了
         }
     }
-    if(u_arg && rootNode->word != NULL) {
-        uniqueNode(rootNode);
-        sortBinSTree(&rootNode);
-    }
     if(rootNode->word == NULL) {
         printf("There is no node\n");
     } else {
+        if(u_arg) {
+            uniqueNode(rootNode);
+            sortBinSTree(&rootNode);
+        }
         printTree(rootNode, p_arg);
     }
     clearBinSTree(rootNode);
