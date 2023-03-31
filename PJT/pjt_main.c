@@ -100,7 +100,10 @@ int main(int argc, char* argv[]) {
             fclose(fp);
         }
     }
-    if(stdin_flag) {setupTree(&rootNode, stdin);} // ファイル引数が存在しないならNULLを渡してstdinから読み込む
+    if(stdin_flag) {
+        printf("---standard input---\n");
+        setupTree(&rootNode, stdin); // ファイル引数が存在しないならNULLを渡してstdinから読み込む
+    }
 
     /* --- オプションに応じた処理 --- */
     char* opt_arg1 = (char*)malloc(sizeof(char) * N);
