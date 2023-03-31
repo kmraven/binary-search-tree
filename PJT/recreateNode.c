@@ -1,6 +1,7 @@
 #include "interCheck.h"
 
 void recreateNode(BinSTreeNode* rootNode, BinSTreeNode** new_rootNode) {
+    /* 新しくTreeを作り直す関数(new_rootNode=NULLのケースを考えて**で扱っている) */
     if(rootNode != NULL) {
         if(*new_rootNode == NULL) {
             *new_rootNode = createNode(rootNode->word);

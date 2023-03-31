@@ -1,9 +1,7 @@
 #include "interCheck.h"
 
 void setupTree(BinSTreeNode** rootNode, FILE* fp) {
-    /*
-    入力データをTreeに格納する関数
-    */
+    /* 入力データをTreeに格納する関数(rootNode=NULLのケースを考えて**で扱っている) */
     int i, j;
     char* str = (char*)malloc(sizeof(char) * N);
     char* str_buff = (char*)malloc(sizeof(char) * N);
