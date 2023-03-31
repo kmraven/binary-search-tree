@@ -6,7 +6,7 @@ char* mystrsubst(const char* s1, const char* s2, const char* s3){
     // new_strの領域を適当にmalloc
     char* new_str = (char*)malloc(sizeof(char) * (s1_len + s1_len * s3_len + 1));
     // s1を1文字ずつ見ていって
-    for(i = 0; i < mystrlen(s1); i++){
+    for(i = 0; i < s1_len; i++){
         if (mystrncmp(&s1[i], s2, s2_len) == 0){
             // s3に変更
             mystrcpy(&new_str[i_new_str], s3);

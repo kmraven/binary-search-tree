@@ -5,8 +5,8 @@ void parseArgs(char* argv, char* opt_arg1, char* opt_arg2) {
     引数文字列を'/'区切りでparseする関数
     argvはバリデーションによって、最初と最後の文字は'/'で、'/'は3つあることが確定している
     */
-    int i, slash2 = 0, slash3 = mystrlen(argv) - 1;
-    for(i = 1; i < mystrlen(argv); i++) {
+    int i, slash2 = 0, slash3 = mystrlen(argv) - 1, argv_len = mystrlen(argv);
+    for(i = 1; i < argv_len; i++) {
         if(argv[i] == '/') {
             slash2 = i;
             break;

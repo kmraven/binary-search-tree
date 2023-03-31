@@ -6,9 +6,9 @@ int validateArgs(char *argv) {
     引数が正常な場合は0を、不適切な場合は1を返す
     最初と最後が'/'かつ'/'が3つであればOK
     */
-    int i = 0, slash_cnt = 0;
+    int i = 0, slash_cnt = 0, argv_len = mystrlen(argv);;
     if(argv[i] != '/') {return 1;} // 最初の文字が'/'ではない
-    for(i = 0; i < mystrlen(argv); i++) {
+    for(i = 0; i < argv_len; i++) {
         if(argv[i] == '/') {slash_cnt += 1;}
     }
     if(slash_cnt != 3) {return 1;} // '/'の数が3つではない
