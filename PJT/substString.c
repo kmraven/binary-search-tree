@@ -7,9 +7,6 @@ int substString(BinSTreeNode* rootNode, const char *sstr, const char *rstr, int 
     なお、部分文字列の置換を行った場合、2分探索木の条件が崩れる可能性があるため、置換後に後述の sortBinSTree 関数を実行する。
     */
     if(rootNode != NULL) {
-        // 間順走査
-        replaced = substString(rootNode->left, sstr, rstr, replaced); // 左ノードへ移動
-
         char *after = mystrsubst(rootNode->word, sstr, rstr); // substの返り値がmallocされてるので変数に格納しといてfreeする
         if(mystrcmp(rootNode->word, after) != 0) {
             free(rootNode->word);
@@ -18,7 +15,7 @@ int substString(BinSTreeNode* rootNode, const char *sstr, const char *rstr, int 
         } else {
             free(after);
         }
-
+        replaced = substString(rootNode->left, sstr, rstr, replaced); // 左ノードへ移動
         replaced = substString(rootNode->right, sstr, rstr, replaced); // 右ノードへ移動
     }
     return replaced;
