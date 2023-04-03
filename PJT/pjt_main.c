@@ -109,7 +109,7 @@ int main(int argc, char* argv[]) {
     char* opt_arg1 = (char*)malloc(sizeof(char) * N);
     char* opt_arg2 = (char*)malloc(sizeof(char) * N);
     printf("---BinSTree---\n");
-    if(rootNode != NULL) {
+    if(rootNode != NULL) { // 入力が何もされなかった時用の付け焼き刃
         // -s,-u,-rの処理を実行、バリデーション通過済みなので最低限の処理のみでOK
         for(i = 1; i < argc; i++) {
             if(*argv[i] == '-') {
@@ -139,7 +139,7 @@ int main(int argc, char* argv[]) {
             }
         }
     }
-    if(rootNode->word == NULL || rootNode == NULL) {
+    if(rootNode == NULL || rootNode->word == NULL) { // 入力が何もされなかった時用の付け焼き刃
         printf("There is no node\n");
     } else {
         if(u_arg) {
