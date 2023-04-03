@@ -119,25 +119,25 @@ int main(int argc, char* argv[]) {
                 parseArgs(argv[i], opt_arg1, opt_arg2); // 引数をparse
                 if(substString(rootNode, opt_arg1, opt_arg2, 0)) {
                     sortBinSTree(&rootNode);
-                    removeNode(&rootNode, "", 0);
+                    removeNode(rootNode, "", 0);
                 }
             } else if(mystrcmp(argv[i], "-r") == 0) {
                 i += 1;
                 parseArgs(argv[i], opt_arg1, opt_arg2); // 引数をparse
                 if(mystrcmp(opt_arg2, "0") == 0) {
-                    removeNode(&rootNode, opt_arg1, 0);
+                    removeNode(rootNode, opt_arg1, 0);
                 } else {
-                    removeNode(&rootNode, opt_arg1, 1);
+                    removeNode(rootNode, opt_arg1, 1);
                 }
             }
-            if(rootNode == NULL) {
+            if(rootNode->word == NULL) {
                 break; // removeNodeで木が消滅した場合はrootNode->wordをNULLにするようにしている
             }
         } else {
             break; // ファイル引数に達したらオプション走査終了
         }
     }
-    if(rootNode == NULL) {
+    if(rootNode->word == NULL) {
         printf("There is no node\n");
     } else {
         if(u_arg) {

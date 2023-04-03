@@ -19,7 +19,7 @@ void printTree(BinSTreeNode *rootNode, int order);
 int substString(BinSTreeNode* rootNode, const char *sstr, const char *rstr, int replaced);
 void sortBinSTree(BinSTreeNode** rootNode);
 void clearBinSTree(BinSTreeNode* rootNode);
-void removeNode(BinSTreeNode** rootNode, const char *word, int delall);
+void removeNode(BinSTreeNode* rootNode, const char *word, int delall);
 
 //your additional functions
 int mystrcmp(const char* s1, const char* s2);
