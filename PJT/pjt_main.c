@@ -109,35 +109,37 @@ int main(int argc, char* argv[]) {
     char* opt_arg1 = (char*)malloc(sizeof(char) * N);
     char* opt_arg2 = (char*)malloc(sizeof(char) * N);
     printf("---BinSTree---\n");
-    // -s,-u,-rの処理を実行、バリデーション通過済みなので最低限の処理のみでOK
-    for(i = 1; i < argc; i++) {
-        if(*argv[i] == '-') {
-            if(mystrcmp(argv[i], "-p") == 0 && p_flag == 2) {
-                i += 1;
-            } else if(mystrcmp(argv[i], "-s") == 0) {
-                i += 1;
-                parseArgs(argv[i], opt_arg1, opt_arg2); // 引数をparse
-                if(substString(rootNode, opt_arg1, opt_arg2, 0)) {
-                    sortBinSTree(&rootNode);
-                    removeNode(rootNode, "", 0);
+    if(rootNode != NULL) {
+        // -s,-u,-rの処理を実行、バリデーション通過済みなので最低限の処理のみでOK
+        for(i = 1; i < argc; i++) {
+            if(*argv[i] == '-') {
+                if(mystrcmp(argv[i], "-p") == 0 && p_flag == 2) {
+                    i += 1;
+                } else if(mystrcmp(argv[i], "-s") == 0) {
+                    i += 1;
+                    parseArgs(argv[i], opt_arg1, opt_arg2); // 引数をparse
+                    if(substString(rootNode, opt_arg1, opt_arg2, 0)) {
+                        sortBinSTree(&rootNode);
+                        removeNode(rootNode, "", 0);
+                    }
+                } else if(mystrcmp(argv[i], "-r") == 0) {
+                    i += 1;
+                    parseArgs(argv[i], opt_arg1, opt_arg2); // 引数をparse
+                    if(mystrcmp(opt_arg2, "0") == 0) {
+                        removeNode(rootNode, opt_arg1, 0);
+                    } else {
+                        removeNode(rootNode, opt_arg1, 1);
+                    }
                 }
-            } else if(mystrcmp(argv[i], "-r") == 0) {
-                i += 1;
-                parseArgs(argv[i], opt_arg1, opt_arg2); // 引数をparse
-                if(mystrcmp(opt_arg2, "0") == 0) {
-                    removeNode(rootNode, opt_arg1, 0);
-                } else {
-                    removeNode(rootNode, opt_arg1, 1);
+                if(rootNode->word == NULL) {
+                    break; // removeNodeで木が消滅した場合はrootNode->wordをNULLにするようにしている
                 }
+            } else {
+                break; // ファイル引数に達したらオプション走査終了
             }
-            if(rootNode->word == NULL) {
-                break; // removeNodeで木が消滅した場合はrootNode->wordをNULLにするようにしている
-            }
-        } else {
-            break; // ファイル引数に達したらオプション走査終了
         }
     }
-    if(rootNode->word == NULL) {
+    if(rootNode->word == NULL || rootNode == NULL) {
         printf("There is no node\n");
     } else {
         if(u_arg) {
