@@ -1,7 +1,8 @@
 ### Customize for this repo ###
 PJT/pjt
 pjt_test/
-
+*.tgz
+*.zip
 
 
 ### My default ###

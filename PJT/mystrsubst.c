@@ -4,10 +4,10 @@ char* mystrsubst(const char* s1, const char* s2, const char* s3){
     // s1中のs2をs3に置換したnew_strを返す
     int i, i_new_str = 0, s1_len = mystrlen(s1), s2_len = mystrlen(s2), s3_len = mystrlen(s3);
     // new_strの領域を適当にmalloc
-    char* new_str = (char*)malloc(sizeof(char) * (s1_len + s1_len * s3_len + 1));
+    char* new_str = (char*)malloc(sizeof(char) * (s1_len + s1_len * s3_len + 1)); // s3_len=0の可能性もあるので, + s1len
     // s1を1文字ずつ見ていって
     for(i = 0; i < s1_len; i++){
-        if (mystrncmp(&s1[i], s2, s2_len) == 0){
+        if (s2_len != 0 && mystrncmp(&s1[i], s2, s2_len) == 0){
             // s3に変更
             mystrcpy(&new_str[i_new_str], s3);
             i += s2_len - 1; // forの頭でi++されるから
