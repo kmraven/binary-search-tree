@@ -29,14 +29,14 @@ There are four options available:
 % make
 
 # Example usage: read from standard input, perform in-order traversal
-./pjt
+% ./pjt
 
 # Read from file1.txt and file2.txt, perform post-order traversal, and replace "foo" with "bar"
-./pjt -p 2 -s /foo/bar/ file1.txt file2.txt
+% ./pjt -p 2 -s /foo/bar/ file1.txt file2.txt
 
 # Read from standard input, perform in-order traversal, output only unique strings
-./pjt -u
+% ./pjt -u
 
 # Read from file.txt, perform pre-order traversal, and delete nodes matches "xyz"
-./pjt -p 0 -r /xyz/1/ file.txt
+% ./pjt -p 0 -r /xyz/1/ file.txt
 ```
